@@ -1,0 +1,21 @@
+{
+  "voice": "am_michael",
+  "speed": 1.05,
+  "lead": 0.45,
+  "outro": 0.9,
+  "gap": 0.32,
+  "lines": [
+    { "text": "New York, nineteen oh one." },
+    { "text": "A man in a bowler hat sold the Brooklyn Bridge." },
+    { "text": "Then he sold it again." },
+    { "text": "He walked his buyer onto the steel and said," },
+    { "text": "It's yours for a thousand dollars." },
+    { "text": "The buyer paid." },
+    { "text": "George even built a toll booth and collected fares from real traffic." },
+    { "text": "When the police arrived, he was already downtown, selling the Statue of Liberty." },
+    { "text": "He was arrested three times." },
+    { "text": "Each time, he straightened his hat and found a new buyer." },
+    { "text": "If you believe that, he had a bridge to sell you." },
+    { "text": "Oddly, the bridge is still there." }
+  ]
+}
