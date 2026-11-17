@@ -1,0 +1,27 @@
+# Generated project outputs
+frames/
+stills/
+work/
+out/
+web/lib/three.module.js
+web/toonbase.js
+web/toon.js
+
+# Local dependencies and Python cache
+node_modules/
+__pycache__/
+*.py[cod]
+
+# Local recordings and intermediate audio
+voice.mp3
+voice.wav
+mix.wav
+mix_raw.wav
+music.wav
+sfx.wav
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

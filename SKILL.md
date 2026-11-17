@@ -1,147 +1,126 @@
 ---
-name: cartoon-audio-short
-description: Make a vertical animated cartoon short. Offers 10 ideas, writes the script, then turns the user's voiceover into a finished MP4 with music and SFX at half the voice level. Use for any cartoon short or animated story video request.
+name: cartoon-video
+description: Create original vertical animated cartoon shorts from an idea, script, or uploaded voiceover. Use when a user wants a short-form cartoon video planned, scripted, timed to narration, animated with a Three.js world and illustrated characters, sound-designed, rendered, or exported as an MP4. Also use when adapting the included soldier example or troubleshooting this workflow.
 ---
 
-# Cartoon short: idea → script → voiceover → finished MP4
+# Cartoon Video Skill
 
-The look: flat 2D bean-head cartoon characters (canvas-drawn "cards" with plum outlines) in a colourful 3D world with black ink outlines, painted textures, depth-of-field and gliding cameras. The output is 1080x1920, 30 fps, exactly as long as the voiceover. The user's voice is unchanged. The music bed and SFX are synthesized and sit at **50 % of the voice level**. Proven on "The Soldier Who Never Left" (19.7 s, 8 shots).
+Help the user make an original, narration-led vertical cartoon short. The repository root is the skill directory: `engine/`, `tools/`, and `example/` are located directly inside it (there is no `kit/` subdirectory). Keep the user informed about the plan, review stills before a long render, and report any unavailable tools or incomplete stages honestly.
 
-## Rules
-- Stories, characters and shots are always original. Never recreate another creator's video shot for shot. Offer an original take on the same idea instead.
-- No real, named living people as characters, and no brand mascots or logos.
-- No captions unless the user asks. Diegetic text (a carved message, a sign) is fine, and it must read correctly (not mirrored).
-- Never edit or re-time the voice. The picture is timed to it, and every visual reaction lands 0-3 frames before its word.
-- **Audio levels:** the music bed sits at 50 % of the voice level (−6 dB, gated RMS). SFX sit at 50 % or slightly less, with peaks capped so no hit pokes out over the narration. Always mix with `mix.py`, never by hand. Use no ducking or compression that would change this ratio; only one linear gain plus a peak limiter goes on the whole mix.
-- Keep the user informed with a task list. Send a stills contact sheet before the long render.
+## Creative direction
 
-## Stage 1: Intake (always first)
-If an audio file is already attached, skip to Stage 4. If a script was also given, use it for the timing.
-Otherwise ask one AskUserQuestion (or plain text if that tool is missing): **"Where are you starting from?"**
-- **Voiceover ready**: ask them to upload it, plus the script text if they have it (the script makes the timing exact). Go to Stage 4 when it arrives.
-- **I have a script, need the voiceover**: tighten the script per Stage 3 if needed, give it back with recording tips, ask for the upload, then go to Stage 4.
-- **Need video ideas and a script**: go to Stage 2.
-Also ask the target length if they haven't said. The default is 20-30 s; 45-60 s is allowed.
+The signature look is expressive, flat illustrated character cards in a colorful, dimensional 3D world: painted textures, inked outlines, atmospheric lighting, depth of field, and smooth camera movement. Default to a vertical 9:16 composition, 1080×1920, at 30 fps. Use visual storytelling, readable silhouettes, deliberate staging, and reactions that land with the narration.
 
-## Stage 2: 10 video ideas
-Give exactly 10 ideas in one reply, numbered, and ask the user to reply with a number (or "more"). Each idea gets:
-- **Title** (5-8 words, curiosity-driven, e.g. "The Soldier Who Never Left").
-- **Hook line**: the first spoken sentence, a paradox stated as fact ("A man sold the Eiffel Tower. Twice.").
-- **The twist** in one line (the ironic payoff that ends the video).
-- **Why it animates well**: the 2-3 big visual moments (a collapse, a reveal, a chase).
-- **True or legend**: say plainly whether it is documented history, a disputed account or folklore.
+- Stories, characters, and shot designs must be original; do not reproduce another creator's video shot-for-shot.
+- Do not make real, named living people characters or include brand mascots/logos.
+- Do not add captions unless requested. Any in-world text must be correctly oriented and readable.
+- Avoid graphic content and do not make real living people the target of ridicule.
+- Verify factual claims when browsing/research tools are available. Label legends and disputed stories clearly; never present a viral anecdote as confirmed fact.
+- Preserve the user's voice recording. Time the visuals to it; do not edit or retime the narration to fit the animation.
+- Keep narration intelligible. Music and effects should support, not overpower, the voice.
 
-What makes an idea "perfect" for this format:
-- One surprising story with a physical cause and effect you can show.
-- A clear everyman character, stakes that escalate, and a twist in the last line.
-- A setting that can be built from simple 3D shapes plus cartoon cards (towns, bridges, ships, castles, deserts, labs, palaces).
-- Mix the 10 across eras and themes: ancient, medieval, 1800s, modern, science, animals, inventions, disasters, weird laws, lucky accidents.
-- For anything presented as true, verify the key facts with a web search before offering it. Don't present a viral legend as fact. If the user wants it anyway, frame it as "legend says".
-- No real living people as the butt of a joke, nothing graphic and nothing political.
+## Stage 1 — Find the starting point
 
-## Stage 3: Script (after they pick)
-Write the narration only (no stage directions in the spoken text), sized at about 3.7 words/s: 20 s ≈ 75 words, 30 s ≈ 110, 60 s ≈ 220. Formula:
-1. **Hook** (sentence 1, no setup): the absurd fact.
-2. **Setting** in 1-2 lines: when, where, who, a concrete detail.
-3. **Escalation**, 2-4 beats, each bigger. Others doubt or mock. Use one exaggeration joke.
-4. **Mystery or pivot**: "But when..." / "You see," introduces the real mechanism, often with an everyday analogy.
-5. **Twist / payoff**: short, ironic, and the last words of the video.
-Use plain spoken English, contractions, sentences around 8-15 words, and numbers written as words. Never describe what the viewer already sees.
+First check the user's message and attachments. If a voiceover is present, use it and ask for the final script only if needed to resolve timing. Otherwise ask whether the user has a voiceover, has a script and needs to record it, or wants ideas and a script. Ask for target duration if unknown; default to 20–30 seconds, with 45–60 seconds available when requested.
 
-Then reply with:
-- The script in a copyable block, with the word count and estimated length.
-- A one-paragraph visual plan (the shots you'll animate).
-- Recording tips: one steady, warm narrator voice; ElevenLabs works well (a deep narrator voice, speed about 1.05-1.1, stability about 45-55 %). Mp3 or wav is fine. Leave natural pauses at sentence ends. Export without music.
-- The ask: **"Upload the voiceover when it's ready and I'll make the full video."**
-Keep the final script text. It drives the timing in Stage 4, so no speech recognition is needed. If they recorded a changed version, ask for the final text.
+Do not ask for information already provided. Keep the next step clear and give the user a concise progress checklist for multi-step work.
 
-## Stage 4: Build the video (after the voiceover is uploaded)
-Do everything from here without stopping. Ask only if the timing cannot be resolved.
+## Stage 2 — Ideas (when requested)
 
-### 4.0 Get the kit
-The code kit ships **inside this skill folder** at `kit/` (engine, tools, worked example, plus vendored three.js r160 and the `toon.ts` Pen library from github.com/mromidev/claude-animated-shorts, both MIT). Locate the folder with `find / -name SKILL.md -path "*cartoon-audio-short*" 2>/dev/null` and treat its `kit/` as read-only.
+Give exactly 10 numbered ideas, then ask the user to choose one or request more. Each idea includes:
 
-Then run `bash <skill>/kit/tools/setup.sh ~/shorts/<slug>`. It copies the engine and tools into the project, installs the vendored three.js, strips the types from `toon.ts` with Node 22 `module.stripTypeScriptTypes`, and links Playwright. No network is needed. If the vendored files are missing, it falls back to npm or a git clone.
-- Requirements: Node 22.6+, Python 3 with numpy + Pillow, ffmpeg, and Playwright with Chromium (`npm i -g playwright && npx playwright install chromium` if missing).
-- If package registries are blocked, git over GitHub usually works. Never disable TLS or route around the proxy.
-- Chromium: use the pre-installed Playwright browser with `--use-angle=swiftshader --enable-unsafe-swiftshader --ignore-gpu-blocklist`. That gives CPU WebGL at about 3-10 s per frame.
+- A curiosity-driven title (about 5–8 words).
+- A strong opening hook stated plainly.
+- The twist/payoff in one line.
+- Why the story will animate well (2–3 visual moments).
+- Whether it is documented history, disputed, or folklore.
 
-### 4.1 Timing
-Run `python3 timing.py voice.mp3 script.txt --out work`.
-- With whisper or faster-whisper installed, it uses word timestamps.
-- Otherwise it aligns script phrases (split at punctuation) to silence-detected speech segments, with a DP that matches syllables to duration and penalises sentence ends inside a segment and long gaps inside a phrase.
-- With no ASR and no script, ask for the script. Claude cannot hear audio.
-- Check `work/phrases.json`: pauses should fall at sentence ends. Total frames = round(duration × 30).
+Favor a clear character, concrete stakes, visible cause and effect, escalation, and an ironic or surprising payoff. Vary eras and themes. Research the key facts for anything described as true when research tools are available.
 
-### 4.2 Shot plan (`work/PLAN.md` before code)
-Make one row per shot: frames, words, setting, light, camera move, characters/poses/expressions, effects and SFX cue.
-- Frame 0 is already the hook image.
-- Usually one shot per phrase. Merge tiny phrases into the next shot.
-- Illustrate every sentence literally. Props carry the jokes.
-- Vary shot sizes: hook MCU → wide reveal → two-shot → insert close-up on the key object → reaction close-up → environment move for the payoff.
-- Use light for beats: day for normal, golden for decline or drama, night-blue for explanation. A time jump gets a 6-frame white flash.
-- The twist line gets a sting (music stops, low hit, push-in with roll). The last shot's physical payoff lands on the final word.
+## Stage 3 — Write the narration
 
-### 4.3 World (`web/main.js`)
-Keep the engine sections: toon materials, ink contract, `add`/`tbox`, sky, lights, cards, render targets/post, `applyLight`, `drawActors`, `swapForNd`, `renderFrame`. Replace the example world between `// ---------- world ----------` and `// ---------- cards ----------`, plus the story parts of `worldState()`.
-- Build from primitives with painted canvas textures (`paint.js`: planks, beams, rotten wood, stone, moss/ivy, grass, dirt, plaster, roof tiles, marble, banners, carved text). Write new painters in the same flat-with-dark-seams style.
-- Use `tbox` for constant texel density, a 2-step toon gradient, and fog = horizon colour.
-- Background: hills (half-buried spheres), mountains (cones + snow caps), cypress/pine trees, distant houses, painted cloud billboards.
-- Set pieces (collapses, falls, doors) are pivoted groups driven by 0..1 progress from `worldAt(f)`, with eased and staggered parts.
-- Curved diegetic text uses planar UVs. Check it isn't mirrored.
+Write narration only—no stage directions in the spoken copy. Aim for roughly 3.7 spoken words per second (about 75 words for 20 seconds, 110 for 30 seconds, or 220 for 60 seconds). Structure it as:
 
-### 4.4 Cast (`web/roman.js` → `web/toon.js`)
-- `romanFront(p, outfitKey, opts)` draws on a 600x1000 design canvas with soles at y=975. The card is 2.25 m tall, so 1 unit = 0.00225 m.
-- Add outfits to `OUTFITS` (tunic/cape/armor/helmet/hair/cap/beard/apron/dress/toga) and new headgear and props in the same style.
-- Arm poses: hang, spear, point, up, wave, hip, belly, temple (+swirl), lift, reach (+lift), cheek, shield, cross, thumb.
-- Expressions: the toon.ts FACE set plus snore, stubborn, squint. Extend FACE for more.
-- Rebuild after edits with `cat web/toonbase.js web/roman.js > web/toon.js`. Render a character test sheet before using new designs.
-- Billboards turn on yaw only, get a contact blob and an alpha-tested shadow, and are never inked by the world pass.
-- Build card keys from `q()`-rounded values (so the canvas redraws only on visible change).
-- A detached part (e.g. a lifted helmet) is its own card, aligned with `headCenter(seed)`: y = DECK + (partY − hc) × 0.00225.
+1. Hook: open with the surprising claim, without a long setup.
+2. Setting: establish when, where, and who with a concrete detail.
+3. Escalation: build through 2–4 increasingly vivid beats.
+4. Pivot: explain the mechanism or reveal the key fact.
+5. Payoff: end with a short, memorable twist.
 
-### 4.5 Motion: smooth and alive (`web/motion.js`)
-- **Cameras**: `camFromKeys(keys, f, {kicks})`. Use smootherstep glides (18-45 f), `easeOut` for reveals and whips, and `path` via-points (Catmull-Rom) for curved moves. Every hold creeps and nothing is static for 4+ frames. Use 3-5° rolls on drama and 7-frame flip-shakes on impacts.
-- **Continuity**: prefer continuous moves (pull back from a close-up into the wide, rack focus, crane through the deck, push into an object). Hard cut only on place or time jumps, with a flash.
-- **Characters never freeze**: apply `idle(f, seed)` to every card, `blinkAt` blinks, and head bobs on stressed words.
-- **Actions**: anticipation → `back` overshoot → `spring` settle. A stamp is a 2-frame dip + dust puff + kick. Laughs are an alternating tilt + bob.
-- **Secondary motion**: banner cloth waves, leaves/dust/drips/Zzz effect cards, flowing water. Something always moves.
-- **Walks**: `walk()` gives distance + step phase. Feet planted, bob 3-7 %.
-- **Lens**: DOF on close-ups and mediums (cInf 8-14 px), focus on the eyes. Wides are sharp. Racks take ~14 f.
+Use conversational language, contractions, and mostly short sentences. Write numbers as spoken words when that improves narration. Do not describe what the viewer can already see. Return the script in a copyable block with a word count and estimated duration, followed by a short visual plan and practical recording guidance. Ask for the voiceover when the script is approved. Keep the final script text for timing; if the recording differs, get the actual spoken version.
 
-### 4.6 Look check (before the full render)
-Render stills at each shot's middle plus the transitions and key actions: `node render.mjs stills/a "5,40,..."` then `python3 sheet.py stills/a stills/sheet_a.jpg`. Look at the sheet and fix these traps:
-- **Narrow vertical frame**: horizontal half-width = d·tan(hfov/2), with hfov = 2·atan(tan(vfov/2)·0.5625). At 4 m and fov 40 that is ±0.8 m, so stage characters in depth.
-- Railings or posts across faces (camera inside the rail or ~2.5 m up). The camera path through houses, roofs or bushes. Foreground props under ~2 m away. The hero hidden behind a pillar.
-- Mirrored text. A detached-part card offset the wrong way.
-- Extrude material groups: 0 = caps, 1 = sides+top.
-- Missing ink: debug the edge-only output. Ink radius ~2.5 px at 1080. The sky counts as far depth, not a card.
-Send the sheet to the user with a one-line shot summary, then start the full render.
+## Stage 4 — Build from a voiceover
 
-### 4.7 Sound (`audio.py` → stems → `mix.py`)
-Rewrite the cue table for the story; the synths stay. `audio.py` writes only stems (`music.wav`, `sfx.wav`).
-- Music: a short march-like loop (kick/snare, plucked bass, brass pad). It stops at the twist line, then a low drone continues.
-- SFX on events (in frames/30): whooshes on big moves, thunk on stamps, rumble+crash on collapses, scrape on metal, ting on reveals, sting on the twist, creaks, snap, splash, snore, leaves, water ambience.
-- Mix with `python3 mix.py voice.mp3 music.wav sfx.wav`. It sets music to exactly 50 % of the voice's gated RMS (−6 dB) and SFX to 50 % with peaks capped at 0.7× the voice peak. It prints the measured levels: confirm music shows −6.0 dB vs voice and SFX is at or below that.
-- Lock picture timing before making sound. Any timing change means re-running audio.py and mix.py.
+Work through the stages below and ask questions only when a missing input blocks progress. Use the user's approved script as the timing reference. If no speech recognizer is available, the script is required: do not claim to understand or transcribe audio without a suitable tool.
 
-### 4.8 Render + finish
-- Run `node render.mjs frames "0-<N-1>"` with Bash `run_in_background`, watched by a Monitor loop that reports progress and catches errors or process exit. `RESUME=1` continues after an interruption. Don't run heavy Python at the same time on small machines.
-- Run `bash finish.sh "Title"`. It applies one linear gain to about −14 LUFS plus a −1 dBFS peak limiter, encodes H.264 CRF 17 + AAC, runs freeze/black and loudness QA, and writes `out/qa_sheet.jpg`. Look at the sheet. Frozen spans ≥0.4 s or black frames need a fix.
-- Deliver the MP4 with SendUserFile and a few lines on what each shot shows. Offer captions, tweaks, or the next idea from the list.
+### 4.1 Prepare the project
 
-## Engine gotchas (kept in the kit; keep them if rebuilding)
-- `#include <fog_vertex>` / `<fog_fragment>` go on their own lines.
-- The final pass writes `linearToOutputTexel(...)` (render targets are linear HalfFloat).
-- The normal+depth pass swaps materials per mesh: world → normal/depth, cards → alpha-tested mask (rgb 0, a = depth), blobs/clouds/sky hidden, water → flat normal. Fog and shadows are off during it.
-- Ink goes on the near side of depth jumps only. Creases come from the normal dot. Card neighbours are skipped. Ink fades at ~140-520 m.
-- DOF: 48 taps with a per-sample CoC test (no foreground bleed).
-- The sun comes from az/el per light preset. The shadow camera is centred on each shot's action.
+The skill kit is at the repository root. Create a separate working project using:
 
-## Architecture (reference for editing the kit)
-- `web/index.html` loads `main.js` (ES module) over a local HTTP server.
-- `main.js`: renderer, toon materials, world, cards (1200x2000 CanvasTexture planes, origin at soles), passes colour (RT samples 4) → normal/depth → ink+grade (saturation, gain/lift, vignette, flash) → DOF to screen. It exposes `window.renderFrame(f)` and `window.ready`.
-- `story.js` exports SHOTS, `shotAt`, `camAt`, `dofAt`, LIGHTS/`lightFor`, `worldAt`, `actorsAt(f, T)`, `fxAt(f, T)`. All are pure functions of the frame.
-- `render.mjs`: Playwright → `renderFrame(f)` → `toDataURL('image/jpeg', .95)` → `frames/f0000.jpg`.
-- `mix.py`: gated-RMS level lock (music and SFX at 50 % of the voice). `finish.sh`: linear loudness gain, limiter, encode, QA.
-- Characters: the Pen API from mromidev/claude-animated-shorts `templates/bridge/toon.ts`, extended in the same module scope by the cast file.
+```bash
+bash <skill-root>/tools/setup.sh <project-directory>
+```
+
+Use the actual installation path for `<skill-root>`. The setup script copies `engine/`, `tools/`, and the worked example starter files into the project, and may retrieve Three.js and character-library code from upstream sources. Do not refer to `<skill-root>/kit/tools/setup.sh`; that path does not exist in this repository.
+
+Check for Node.js 22.6+, Python 3 with NumPy (and Pillow for contact sheets), FFmpeg/FFprobe, Git, and Playwright with Chromium. Explain missing prerequisites and ask before making consequential system-wide changes. Do not disable TLS, bypass a proxy, or use untrusted executable downloads to work around network restrictions. Use Chromium software WebGL only as a fallback and warn that it can render slowly.
+
+### 4.2 Time the narration
+
+From the project directory, run:
+
+```bash
+python3 timing.py voice.mp3 script.txt --out work
+```
+
+The timing tool uses Whisper/faster-whisper word timestamps if available. Otherwise, with a script, it aligns phrases to detected speech segments. Inspect `work/phrases.json`; correct obvious phrase-boundary errors before planning shots. Total frame count is approximately duration × 30. If neither speech recognition nor final script is available, ask for the script rather than guessing.
+
+### 4.3 Plan shots before coding
+
+Write a `work/PLAN.md` with one row per shot: start/end frames, spoken phrase, setting, lighting, camera move, characters/poses/expressions, effects, and sound cues.
+
+- Put a compelling hook image at frame 0.
+- Usually use one shot per phrase; combine very short phrases where useful.
+- Show each sentence with concrete visual action or a prop carrying the joke.
+- Vary shot size and composition: close-up, wide reveal, two-shot, insert, reaction, and environment move.
+- Use lighting to clarify story beats. Make time jumps visually legible.
+- Stage the twist deliberately; land its visual payoff on the final words.
+
+### 4.4 Build the world and cast
+
+Use `engine/` and the copied project files as the source of truth. Adapt `web/story.js` from `example/soldier/story.js` and the copied audio cue table from `example/soldier/audio.py`; do not overwrite the example in the skill repository. Follow the contracts and exports in the copied engine and example code.
+
+Build environments from simple 3D geometry and painted materials. Keep the vertical frame in mind when staging depth and foreground objects. Make story-driven set pieces controllable by frame/time, and ensure the world state is deterministic for any requested frame. Keep character cards readable, with appropriate poses, expressions, blinking, and subtle idle motion. Use smooth camera glides, intentional focus, and secondary motion without distracting from the narration. Verify that diegetic text is not mirrored.
+
+If character source code is changed, follow the generated project's documented rebuild procedure. Render a character test/contact sheet before relying on a new design. Avoid altering the renderer's core material/depth/ink contracts unless the scene requires it and the result has been checked.
+
+### 4.5 Sound design
+
+Adapt the example cue table to the story. Use music to establish tone and support pacing; use sound effects on meaningful actions, transitions, and reveals. Keep the narration in front, prevent effects from startling above it, and avoid using copyrighted music or effects without permission. Render/check the mix before encoding; report any unresolved clipping or balance issue instead of claiming the audio has passed QA.
+
+Lock the picture timing before finalizing cues. If shot timing changes, revisit the sound cue timing and mix.
+
+### 4.6 Review, render, and finish
+
+Render representative frames from each shot, plus transitions and key actions. Create a contact sheet with the provided utilities and inspect it (or use available image-viewing tools). Fix framing, occlusion, mirrored text, blank frames, lighting, and character readability before starting the long render. Share the review sheet and a concise shot summary with the user when the environment supports file sharing, then proceed with the full render.
+
+Typical project commands (run from the generated project directory):
+
+```bash
+node render.mjs stills/review "0,60,120"
+python3 sheet.py stills/review stills/contact-sheet.jpg
+node render.mjs frames "0-<last-frame>"
+bash finish.sh "Title Of Short"
+```
+
+Use the actual frame range derived from the voiceover. Resume only if the renderer's resume mode is supported by the copied version. Check process completion and errors; do not assume a started background process finished. The finish utility encodes an MP4 and prints basic media/black/freeze/loudness checks. Inspect the final file and QA output, and be transparent if any check could not run.
+
+Deliver the MP4 and a short description of the shots when file-sharing tools are available. Otherwise provide the exact output path and explain how the user can retrieve it. Offer focused revisions or captions only if requested.
+
+## Repository and dependency notes
+
+- `engine/`: Three.js renderer and world, paint, motion, and character helpers.
+- `tools/`: project setup, timing, frame render, contact sheet, and finishing scripts. Prefer these canonical scripts from the skill repository.
+- `example/soldier/`: worked example; use it as a starter, not as a story to repeat automatically.
+- The setup process retrieves some third-party dependencies. Respect their upstream licenses and do not claim ownership of third-party code.
+- Generated audio, frames, contact sheets, and MP4 files belong in the user's working project. Do not commit private voice recordings or secrets to the skill repository.
